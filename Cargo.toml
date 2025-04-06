@@ -11,13 +11,19 @@ readme = "README.md"
 edition = "2021"
 
 [dependencies]
-macron-map = { path = "macron-map" }
-macron-str = { path = "macron-str" }
-macron-impl-error = { path = "macron-impl-error" }
-macron-impl-display = { path = "macron-impl-display" }
-macron-impl-from = { path = "macron-impl-from" }
-macron-impl-into = { path = "macron-impl-into" }
 regex = { version = "1.11.1", optional = true }
+# macron-map = { path = "macron-map" }
+# macron-str = { path = "macron-str" }
+# macron-impl-error = { path = "macron-impl-error" }
+# macron-impl-display = { path = "macron-impl-display" }
+# macron-impl-from = { path = "macron-impl-from" }
+# macron-impl-into = { path = "macron-impl-into" }
+macron-map = "0.1.0"
+macron-str = "0.1.0"
+macron-impl-error = "0.1.0"
+macron-impl-display = "0.1.0"
+macron-impl-from = "0.1.0"
+macron-impl-into = "0.1.0"
 
 [features]
 test_regex = ["dep:regex"]
