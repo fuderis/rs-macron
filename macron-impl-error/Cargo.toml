@@ -1,5 +1,6 @@
 [package]
 name = "macron-impl-error"
+description = "The implementation of trait Error"
 version = "0.1.0"
 license = "MIT"
 authors = ["Bulat Sh. <t.me/fuderis>"]

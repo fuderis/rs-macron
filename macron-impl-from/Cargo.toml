@@ -1,5 +1,6 @@
 [package]
 name = "macron-impl-from"
+description = "The implementation of trait From"
 version = "0.1.0"
 license = "MIT"
 authors = ["Bulat Sh. <t.me/fuderis>"]
