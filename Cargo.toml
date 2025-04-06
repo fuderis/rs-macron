@@ -1,0 +1,23 @@
+[package]
+name = "macron"
+description = "Comprehensive Rust macros toolkit for everyday development tasks. Includes convenient string formatting (str!), regex pattern matching (re!), streamlined collection creation, and custom derive macros for Display, Error, From, and Into traits. Boost your productivity with intuitive syntax and simplify your codebase while maintaining performance and safety. Perfect for both small projects and large-scale applications."
+keywords = ["macros", "macro", "proc", "derive", "declarative"]
+categories = ["development-tools", "rust-patterns"]
+version = "0.1.0"
+license = "MIT"
+authors = ["Bulat Sh. <t.me/fuderis>"]
+repository = "https://github.com/fuderis/rs-macron"
+readme = "README.md"
+edition = "2021"
+
+[dependencies]
+macron-map = { path = "macron-map" }
+macron-str = { path = "macron-str" }
+macron-impl-error = { path = "macron-impl-error" }
+macron-impl-display = { path = "macron-impl-display" }
+macron-impl-from = { path = "macron-impl-from" }
+macron-impl-into = { path = "macron-impl-into" }
+regex = { version = "1.11.1", optional = true }
+
+[features]
+test_regex = ["dep:regex"]

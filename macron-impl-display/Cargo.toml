@@ -1,0 +1,15 @@
+[package]
+name = "macron-impl-display"
+version = "0.1.0"
+license = "MIT"
+authors = ["Bulat Sh. <t.me/fuderis>"]
+repository = "https://github.com/fuderis/rs-macron/tree/main/macron-impl-display"
+edition = "2021"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+quote = "1.0.39"
+syn = "2.0.99"
+proc-macro2 = "1.0.94"
