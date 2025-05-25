@@ -5,3 +5,151 @@ version = 4
 [[package]]
 name = "macron"
 version = "0.1.1"
+dependencies = [
+ "macron-collections",
+ "macron-impl-display",
+ "macron-impl-error",
+ "macron-impl-from",
+ "macron-impl-into",
+ "macron-input",
+ "macron-inputln",
+ "macron-map",
+ "macron-regex",
+ "macron-str",
+]
+
+[[package]]
+name = "macron-collections"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cbff14313cbb35e86f569606b9bcdb179d0c59d9425052019fe679a660b5be93"
+dependencies = [
+ "macron-map",
+]
+
+[[package]]
+name = "macron-impl-display"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f9ffb18d54a49dde4005773d8f2e2a709d2caa5561e8c8d430da4ec93a1c027f"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "macron-impl-error"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a7958af320e5974a92ff3db817370fb536500e00d78ac962add78ad19062b7d4"
+dependencies = [
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "macron-impl-from"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a39985f0e374141b913618f753ca649da45dda47621cc4131959d721dc751635"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "macron-impl-into"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2b10b6f502ff432df11bccd9cabda7febdc3f52c901a64edb4c27df3f2f4b2ff"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "macron-input"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d1a4a0ebd8acbd53ab62cb9715005a8525ef0135a2af238572bd451e74378661"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "macron-inputln"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bfa0898a6a2b39ab98aadfdda2fb78956bd6d303c02b98137d5b0b56c30dc7e4"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "macron-map"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c8fd1e10d314ee9aa76777f1412185fbf51844a438867107f3b617aa2eb03b53"
+dependencies = [
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "macron-regex"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "055b1d9e7b56b4f45b9a7501532f88b6306e3bf91fcbea8ffb71b3811380f793"
+
+[[package]]
+name = "macron-str"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d354b048a4a2bcf527b6106bcc1fb68145a444b568107f7fb7782b7014195157"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "proc-macro2"
+version = "1.0.95"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "02b3e5e68a3a1a02aad3ec490a98007cbc13c37cbe84a3cd7b8e406d76e7f778"
+dependencies = [
+ "unicode-ident",
+]
+
+[[package]]
+name = "quote"
+version = "1.0.40"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1885c039570dc00dcb4ff087a89e185fd56bae234ddc7f056a945bf36467248d"
+dependencies = [
+ "proc-macro2",
+]
+
+[[package]]
+name = "syn"
+version = "2.0.101"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8ce2b7fc941b3a24138a0a7cf8e858bfc6a992e7978a068a5c760deb0ed43caf"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "unicode-ident",
+]
+
+[[package]]
+name = "unicode-ident"
+version = "1.0.18"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5a5f39404a5da50712a4c1eecf25e90dd62b613502b7e925fd4e4d19b5c96512"

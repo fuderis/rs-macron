@@ -1,6 +1,7 @@
-extern crate macron;  #[cfg(feature = "test_regex")] use macron::re;
+#![cfg(feature = "test_regex")]
 
-#[cfg(feature = "test_regex")]
+extern crate macron_regex;  use macron_regex::re;
+
 #[test]
 fn test_regex() {
     let re = re!(r"^Hello, \w+!$");
@@ -8,7 +9,6 @@ fn test_regex() {
     assert!(re.is_match("Hello, World!"));
 }
 
-#[cfg(feature = "test_regex")]
 #[test]
 fn test_regex_format() {
     let re = re!(r"^Hello, {}!$", "World");
