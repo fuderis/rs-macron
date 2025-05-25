@@ -3,7 +3,7 @@
 version = 4
 
 [[package]]
-name = "macron-inputln"
+name = "macron-impl-into"
 version = "0.1.1"
 dependencies = [
  "proc-macro2",
