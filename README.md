@@ -19,24 +19,27 @@ Empower your Rust development with this versatile set of macros, designed to mak
 
 #### String operations (feature 'string'):
 
-[macron-str] - Creates a new instance of [String](https://doc.rust-lang.org/stable/std/string/struct.String.html)
-[macron-regex] - Creates a new instance of [Regex](https://docs.rs/regex/latest/regex/struct.Regex.html)
+[macron-str](https://docs.rs/macron-str) - Creates a new instance of [String](https://doc.rust-lang.org/stable/std/string/struct.String.html)
+[macron-regex](https://docs.rs/macron-regex) - Creates a new instance of [Regex](https://docs.rs/regex/latest/regex/struct.Regex.html)
 
 #### IO Input (feature 'input'):
 
-[macron-input] - Reads user input lines from the console
-[macron-inputln] - Reads user input line from the console
+[macron-input](https://docs.rs/macron-input) - Reads user input lines from the console
+[macron-inputln](https://docs.rs/macron-inputln) - Reads user input line from the console
 
 #### Collections (feature 'collections'):
 
-[macron-collections] - Creates a new instance of std collections: HashMap, HashSet, BTreeMap, BTreeSet, VecDeque, LinkedList and BinaryHeap
+[macron-collections](https://docs.rs/macron-collections) - Creates a new instance of std collections: HashMap, HashSet, BTreeMap, BTreeSet, VecDeque, LinkedList and BinaryHeap
 
 #### Derive macros (feature 'derive'):
 
-[macron-impl-display] - The implementation of trait [Display](std::fmt::Display)
-[macron-impl-error] - The implementation of trait [Error](std::error::Error)
-[macron-impl-from] - The implementation of trait [From](std::convert::From)
-[macron-impl-into] - The implementation of trait [Into](std::convert::Into)
+[macron-impl-display](https://docs.rs/macron-impl-display) - The implementation of trait [Display](std::fmt::Display)
+[macron-impl-error](https://docs.rs/macron-impl-error) - The implementation of trait [Error](std::error::Error)
+[macron-impl-from](https://docs.rs/macron-impl-from) - The implementation of trait [From](std::convert::From)
+[macron-impl-into](https://docs.rs/macron-impl-into) - The implementation of trait [Into](std::convert::Into)
+
+### Note:
+If you need all of this macros, then use feature 'full'.
 
 
 ## Licensing:

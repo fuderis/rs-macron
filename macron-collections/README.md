@@ -10,7 +10,9 @@
 
 ## Introduction:
 
-Creates a new instance of std collections: HashMap, HashSet, BTreeMap, BTreeSet, VecDeque, LinkedList and BinaryHeap
+Creates a new instance of std collections: HashMap, HashSet, BTreeMap, BTreeSet, VecDeque, LinkedList and BinaryHeap.
+
+P.s.: More useful macros you can find [here](https://docs.rs/macron).
 
 
 ## Examples:

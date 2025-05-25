@@ -10,7 +10,9 @@
 
 ## Introduction:
 
-The implementation of trait [Display](std::fmt::Display)
+The implementation of trait [Display](std::fmt::Display).
+
+P.s.: More useful macros you can find [here](https://docs.rs/macron).
 
 
 ## Examples:

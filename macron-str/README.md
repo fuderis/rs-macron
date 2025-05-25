@@ -10,7 +10,9 @@
 
 ## Introduction:
 
-Creates a new instance of [String](https://doc.rust-lang.org/stable/std/string/struct.String.html)
+Creates a new instance of [String](https://doc.rust-lang.org/stable/std/string/struct.String.html).
+
+P.s.: More useful macros you can find [here](https://docs.rs/macron).
 
 
 ## Examples:

@@ -10,7 +10,9 @@
 
 ## Introduction:
 
-The key-value collection parser
+The key-value collection parser.
+
+P.s.: More useful macros you can find [here](https://docs.rs/macron).
 
 
 ## Examples:

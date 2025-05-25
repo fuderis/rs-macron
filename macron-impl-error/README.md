@@ -10,7 +10,9 @@
 
 ## Introduction:
 
-The implementation of trait [Error](std::error::Error)
+The implementation of trait [Error](std::error::Error).
+
+P.s.: More useful macros you can find [here](https://docs.rs/macron).
 
 
 ## Examples:

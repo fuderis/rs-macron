@@ -10,7 +10,9 @@
 
 ## Introduction:
 
-The implementation of trait [Into](std::convert::Into)
+The implementation of trait [Into](std::convert::Into).
+
+P.s.: More useful macros you can find [here](https://docs.rs/macron).
 
 
 ## Examples:

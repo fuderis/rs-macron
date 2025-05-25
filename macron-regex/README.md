@@ -10,7 +10,9 @@
 
 ## Introduction:
 
-Creates a new instance of [Regex](https://docs.rs/regex/latest/regex/struct.Regex.html)
+Creates a new instance of [Regex](https://docs.rs/regex/latest/regex/struct.Regex.html).
+
+P.s.: More useful macros you can find [here](https://docs.rs/macron).
 
 
 ## Examples:

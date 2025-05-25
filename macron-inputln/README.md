@@ -10,7 +10,9 @@
 
 ## Introduction:
 
-Reads user input line from the console
+Reads user input line from the console.
+
+P.s.: More useful macros you can find [here](https://docs.rs/macron).
 
 
 ## Examples:
