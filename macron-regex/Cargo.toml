@@ -1,18 +1,17 @@
 [package]
-name = "macron-map"
-description = "The key-value collection parser"
-keywords = ["macros", "macro", "proc", "declarative"]
+name = "macron-regex"
+description = "Creates a new instance of Regex"
+keywords = ["macros", "macro", "declarative"]
 categories = ["development-tools", "rust-patterns"]
-version = "0.1.1"
+version = "0.1.0"
 license = "MIT"
 authors = ["Bulat Sh. <t.me/fuderis>"]
 repository = "https://github.com/fuderis/rs-macron/tree/main/macron-input"
 readme = "README.md"
 edition = "2021"
 
-[lib]
-proc-macro = true
-
 [dependencies]
-quote = "1.0.39"
-syn = "2.0.100"
+regex = { version = "1.11.1", optional = true }
+
+[features]
+test = ["dep:regex"]

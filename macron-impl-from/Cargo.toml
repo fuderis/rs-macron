@@ -1,10 +1,13 @@
 [package]
 name = "macron-impl-from"
 description = "The implementation of trait From"
-version = "0.1.0"
+keywords = ["macros", "macro", "proc", "derive"]
+categories = ["development-tools", "rust-patterns"]
+version = "0.1.1"
 license = "MIT"
 authors = ["Bulat Sh. <t.me/fuderis>"]
 repository = "https://github.com/fuderis/rs-macron/tree/main/macron-impl-from"
+readme = "README.md"
 edition = "2021"
 
 [lib]

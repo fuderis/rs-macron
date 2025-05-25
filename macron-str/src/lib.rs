@@ -1,12 +1,18 @@
-//! See the documentation here [macron documentation](https://docs.rs/macron)
+#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
 
 use proc_macro::TokenStream;
+use proc_macro2::TokenStream as TokenStream2;
 use quote::quote;
-use syn::{ punctuated::Punctuated, spanned::Spanned };
 
 /// Creates a new instance of [String](https://doc.rust-lang.org/stable/std/string/struct.String.html)
 #[proc_macro]
 pub fn str(input: TokenStream) -> TokenStream {
+    // empty string:
+    if input.is_empty() {
+        return quote! { ::std::string::String::new() }.into();
+    }
+    
+    // string format:
     let Format { expr, args } = syn::parse_macro_input!(input as Format);
     
     match expr {
@@ -14,9 +20,7 @@ pub fn str(input: TokenStream) -> TokenStream {
         syn::Expr::Lit(syn::ExprLit { lit: syn::Lit::Str(fmt), .. }) => {
             // str!("a format {}..", "text")
             if args.is_some() {
-                let args = args.unwrap().into_iter();
-                
-                quote! { ::std::format!(#fmt, #(#args)*) }
+                quote! { ::std::format!(#fmt #args) }
             }
             // str!("a format {text}..")
             else if fmt.value().contains(&['{', '}'][..])  {
@@ -28,6 +32,7 @@ pub fn str(input: TokenStream) -> TokenStream {
             }
         },
 
+        // not a literal string:
         _ => quote! { #expr.to_string() }
     }.into()
 }
@@ -35,23 +40,19 @@ pub fn str(input: TokenStream) -> TokenStream {
 // The string formatter
 struct Format {
     pub expr: syn::Expr,
-    pub args: Option<Punctuated::<syn::Expr, syn::Token![,]>>,
+    pub args: Option<TokenStream2>,
 }
 
 impl syn::parse::Parse for Format {
     fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
+        // parse expression:
         let expr = input.parse()?;
 
-        let args = match input.parse::<syn::Token![,]>() {
-            Ok(_) => {
-                if let syn::Expr::Lit(syn::ExprLit { lit: syn::Lit::Str(_), .. }) = expr {
-                } else {
-                    return Err(syn::Error::new(expr.span(), "Expected the literal string by using format arguments, example: 'str!(\"format str {{}}\", \"arg1\", ..)'"));
-                }
-                
-                Some(Punctuated::parse_terminated(input)?)
-            }, 
-            Err(_) => None
+        // parse arguments:
+        let args = if input.peek(syn::token::Comma) {
+            Some(input.parse()?)
+        } else {
+            None
         };
         
         Ok(Self { expr, args })

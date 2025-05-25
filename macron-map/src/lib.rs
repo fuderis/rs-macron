@@ -1,3 +1,5 @@
+#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
+
 //! See the documentation here [macron documentation](https://docs.rs/macron)
 
 use proc_macro::TokenStream;

@@ -1,4 +1,4 @@
-extern crate macron;  use macron::Error;
+extern crate macron_impl_error;  use macron_impl_error::Error;
 
 #[test]
 fn test_impl_error_struct() {

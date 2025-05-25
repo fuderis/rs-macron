@@ -3,7 +3,7 @@ name = "macron"
 description = "Comprehensive Rust macros toolkit for everyday development tasks. Includes convenient string formatting (str!), regex pattern matching (re!), streamlined collection creation, and custom derive macros for Display, Error, From, and Into traits. Boost your productivity with intuitive syntax and simplify your codebase while maintaining performance and safety. Perfect for both small projects and large-scale applications."
 keywords = ["macros", "macro", "proc", "derive", "declarative"]
 categories = ["development-tools", "rust-patterns"]
-version = "0.1.0"
+version = "0.1.1"
 license = "MIT"
 authors = ["Bulat Sh. <t.me/fuderis>"]
 repository = "https://github.com/fuderis/rs-macron"
@@ -11,19 +11,15 @@ readme = "README.md"
 edition = "2021"
 
 [dependencies]
-regex = { version = "1.11.1", optional = true }
-# macron-map = { path = "macron-map" }
-# macron-str = { path = "macron-str" }
-# macron-impl-error = { path = "macron-impl-error" }
-# macron-impl-display = { path = "macron-impl-display" }
-# macron-impl-from = { path = "macron-impl-from" }
-# macron-impl-into = { path = "macron-impl-into" }
-macron-map = "0.1.0"
-macron-str = "0.1.0"
-macron-impl-error = "0.1.0"
-macron-impl-display = "0.1.0"
-macron-impl-from = "0.1.0"
-macron-impl-into = "0.1.0"
+macron-collections = { version = "0.1.0", optional = true }
+macron-impl-display = { version = "0.1.0", optional = true }
+macron-impl-error = { version = "0.1.0", optional = true }
+macron-impl-from = { version = "0.1.0", optional = true }
+macron-impl-into = { version = "0.1.0", optional = true }
+macron-regex = { version = "0.1.0", optional = true }
+macron-str = { version = "0.1.0", optional = true }
 
 [features]
-test_regex = ["dep:regex"]
+string = ["macron-str", "macron-regex"]
+collections = ["macron-collections"]
+derive = ["macron-impl-display", "macron-impl-error", "macron-impl-from", "macron-impl-into"]

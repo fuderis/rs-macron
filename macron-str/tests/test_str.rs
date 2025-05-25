@@ -1,4 +1,11 @@
-extern crate macron;  use macron::str;
+extern crate macron_str;  use macron_str::str;
+
+#[test]
+fn test_empty_str() {
+    let s = str!();
+
+    assert_eq!(s, String::new());
+}
 
 #[test]
 fn test_str() {
@@ -31,6 +38,13 @@ fn test_format_str_with_args() {
 
 #[test]
 fn test_format_str_with_named_args() {
+    let s = str!("Hello, {name}!", name = "World");
+
+    assert_eq!(s, "Hello, World!");
+}
+
+#[test]
+fn test_format_str_with_outer_args() {
     let name = "World";
     let s = str!("Hello, {name}!");
 

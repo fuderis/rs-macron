@@ -2,7 +2,7 @@
 #[macro_export]
 macro_rules! btree_map {
     ($($tt:tt)*) => {{
-        ::std::collections::BTreeMap::from( ::macron::map!( $($tt)* ) )
+        ::std::collections::BTreeMap::from( ::macron_map::map!( $($tt)* ) )
     }};
 }
 
@@ -10,7 +10,7 @@ macro_rules! btree_map {
 #[macro_export]
 macro_rules! auto_btree_map {
     ($($tt:tt)*) => {{
-        let fields = ::macron::map!($($tt)*);
+        let fields = ::macron_map::map!($($tt)*);
         let map: ::std::collections::BTreeMap<String, _> = fields
             .into_iter()
             .map(|(k, v)| (k.into(), v.into()))
@@ -23,7 +23,7 @@ macro_rules! auto_btree_map {
 #[macro_export]
 macro_rules! str_btree_map {
     ($($tt:tt)*) => {{
-        let fields = ::macron::map!($($tt)*);
+        let fields = ::macron_map::map!($($tt)*);
         let map: ::std::collections::BTreeMap<String, _> = fields
             .into_iter()
             .map(|(k, v)| (String::from(k), String::from(v)))

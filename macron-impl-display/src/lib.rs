@@ -1,3 +1,5 @@
+#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
+
 //! See the documentation here [macron documentation](https://docs.rs/macron)
 
 use proc_macro::TokenStream;
@@ -39,6 +41,7 @@ pub fn impl_display(input: TokenStream) -> TokenStream {
 
         // impl Enum:
         syn::Data::Enum(en) => {
+            // no variants:
             if en.variants.is_empty() {
                 return quote! {
                     impl ::std::fmt::Display for #ident {
@@ -49,14 +52,15 @@ pub fn impl_display(input: TokenStream) -> TokenStream {
                 }.into();
             }
             
+            // has variants:
             let vars = en.variants
                 .iter()
                 .map(|syn::Variant { ident: var_ident, fields, attrs, .. }| {
-                    // is has attr display:
-                    if let Some(mut fmt) = read_attr_value(&attrs) {
-                        match fields {
-                            // Named { ..:.., }
-                            syn::Fields::Named(_) => {
+                    match fields {
+                        // Named { ..:.., }
+                        syn::Fields::Named(_) => {
+                            // has attr:
+                            if let Some(fmt) = read_attr_value(&attrs) {
                                 let args = fields
                                     .iter()
                                     .map(|field| field.ident.clone().unwrap())
@@ -68,10 +72,17 @@ pub fn impl_display(input: TokenStream) -> TokenStream {
                                     });
     
                                 quote! { Self::#var_ident { #(#args,)* .. } => write!(f, #fmt) }
-                            },
-    
-                            // Unnamed(.., .., )
-                            syn::Fields::Unnamed(_) => {
+                            }
+                            // no attr:
+                            else {
+                                quote! { Self::#var_ident { .. } => write!(f, stringify!(#var_ident)) }
+                            }
+                        },
+
+                        // Unnamed(.., .., )
+                        syn::Fields::Unnamed(_) => {
+                            // has attr:
+                            if let Some(mut fmt) = read_attr_value(&attrs) {
                                 let args = (0..fields.len())
                                     .into_iter()
                                     .map(|i| {
@@ -86,7 +97,7 @@ pub fn impl_display(input: TokenStream) -> TokenStream {
                                         proc_macro2::Ident::new(&arg, proc_macro2::Span::call_site())
                                     })
                                     .collect::<Vec<_>>();
-    
+
                                 let vals = args.clone()
                                     .into_iter()
                                     .map(|arg| 
@@ -96,16 +107,26 @@ pub fn impl_display(input: TokenStream) -> TokenStream {
                                             quote! { "" }
                                         }
                                     );
-    
+
                                 quote! { Self::#var_ident(#(#args,)*) => write!(f, #fmt, #(#vals,)*) }
-                            },
-    
-                            _ => quote! { Self::#var_ident => write!(f, #fmt) }
+                            }
+                            // no attr:
+                            else {
+                                if fields.len() == 1 {
+                                    quote! { Self::#var_ident(arg) => write!(f, "{0}", arg) }
+                                } else {
+                                    quote! { Self::#var_ident(..) => write!(f, stringify!(#var_ident)) }
+                                }
+                            }
+                        },
+
+                        syn::Fields::Unit => {
+                            if let Some(fmt) = read_attr_value(&attrs) {
+                                quote! { Self::#var_ident => write!(f, #fmt) }
+                            } else {
+                                quote! { Self::#var_ident => write!(f, stringify!(#var_ident)) }
+                            }
                         }
-                    }
-                    // no attr display:
-                    else {
-                        quote! { Self::#var_ident => write!(f, stringify!(#var_ident)) }
                     }
                 });
             

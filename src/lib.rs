@@ -6,7 +6,7 @@ pub use macron_impl_from::From;
 pub use macron_impl_into::Into;
 
 pub use macron_map::map;
-pub mod collections;
+pub use macron_collections::{ binary_heap, btree_map, btree_set, hash_map, hash_set, linked_list, vec_deque };
 
 pub use macron_str::str;
-pub mod string;
+pub use macron_regex::re;

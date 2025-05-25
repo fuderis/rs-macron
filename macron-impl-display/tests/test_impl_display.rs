@@ -1,16 +1,16 @@
 #![allow(dead_code)]
 
-extern crate macron;  use macron::Display;
+extern crate macron_impl_display;  use macron_impl_display::Display;
 
 #[test]
 fn test_impl_display_struct() {
-    // Without message
+    // without message
     #[derive(Display)]
     struct Test;
 
     assert_eq!(format!("{}", Test {}), "Test");
 
-    // With message:
+    // with message:
     #[derive(Display)]
     #[display = "Hello, {name}!"]
     struct Hello {
@@ -28,6 +28,8 @@ fn test_impl_display_enum() {
     enum Animals {
         Test,
         
+        Tiger(u8),
+        
         #[display = "it's a dog"]
         Dog,
         
@@ -39,6 +41,8 @@ fn test_impl_display_enum() {
     }
 
     assert_eq!(format!("{}", Animals::Test), "Test");
+
+    assert_eq!(format!("{}", Animals::Tiger(2)), "2");
 
     let dog = Animals::Dog;
     assert_eq!(format!("{dog}"), "it's a dog");

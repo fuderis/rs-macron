@@ -2,7 +2,7 @@
 #[macro_export]
 macro_rules! hash_map {
     ($($tokens:tt)*) => {{
-        ::std::collections::HashMap::from( ::macron::map!( $($tokens)* ) )
+        ::std::collections::HashMap::from( ::macron_map::map!( $($tokens)* ) )
     }};
 }
 
@@ -10,7 +10,7 @@ macro_rules! hash_map {
 #[macro_export]
 macro_rules! auto_hash_map {
     ($($tokens:tt)*) => {{
-        let fields = ::macron::map!($($tokens)*);
+        let fields = ::macron_map::map!($($tokens)*);
         let map: ::std::collections::HashMap<String, _> = fields
             .into_iter()
             .map(|(k, v)| (k.into(), v.into()))
@@ -23,7 +23,7 @@ macro_rules! auto_hash_map {
 #[macro_export]
 macro_rules! str_hash_map {
     ($($tokens:tt)*) => {{
-        let fields = ::macron::map!($($tokens)*);
+        let fields = ::macron_map::map!($($tokens)*);
         let map: ::std::collections::HashMap<String, _> = fields
             .into_iter()
             .map(|(k, v)| (String::from(k), String::from(v)))

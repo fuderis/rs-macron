@@ -3,10 +3,18 @@
 version = 4
 
 [[package]]
-name = "macron-str"
+name = "macron-collections"
 version = "0.1.0"
 dependencies = [
- "proc-macro2",
+ "macron-map",
+]
+
+[[package]]
+name = "macron-map"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fbc4513d092228164c8aa7c2a84ff7b642330e45103605bb8d2b0e97e3e6ac15"
+dependencies = [
  "quote",
  "syn",
 ]
@@ -22,9 +30,9 @@ dependencies = [
 
 [[package]]
 name = "quote"
-version = "1.0.39"
+version = "1.0.40"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c1f1914ce909e1658d9907913b4b91947430c7d9be598b15a1912935b8c04801"
+checksum = "1885c039570dc00dcb4ff087a89e185fd56bae234ddc7f056a945bf36467248d"
 dependencies = [
  "proc-macro2",
 ]

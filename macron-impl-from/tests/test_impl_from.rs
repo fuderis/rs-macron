@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-extern crate macron;  use macron::From;
+extern crate macron_impl_from;  use macron_impl_from::From;
 
 #[test]
 fn test_impl_from_struct() {

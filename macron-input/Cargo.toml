@@ -1,7 +1,7 @@
 [package]
-name = "macron-map"
-description = "The key-value collection parser"
-keywords = ["macros", "macro", "proc", "declarative"]
+name = "macron-input"
+description = "Reads user input lines from the console"
+keywords = ["macros", "macro", "proc"]
 categories = ["development-tools", "rust-patterns"]
 version = "0.1.1"
 license = "MIT"
@@ -14,5 +14,6 @@ edition = "2021"
 proc-macro = true
 
 [dependencies]
+proc-macro2 = "1.0.95"
 quote = "1.0.39"
-syn = "2.0.100"
+syn = { version = "2.0.100", features = ["parsing"] }
