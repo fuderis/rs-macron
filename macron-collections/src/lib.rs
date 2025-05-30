@@ -1,5 +1,8 @@
 #![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
 
+#[cfg(feature = "test")]
+pub use macron_map;
+
 pub mod vec_deque;
 
 pub mod hash_map;
