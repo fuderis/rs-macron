@@ -11,7 +11,7 @@ pub use macron_input::input;
 pub use macron_inputln::inputln;
 
 #[cfg(feature = "collections")]
-pub use macron_collections::{ map, binary_heap, btree_map, btree_set, hash_map, hash_set, linked_list, vec_deque };
+pub use macron_collections::{ binary_heap, btree_map, btree_set, hash_map, hash_set, linked_list, vec_deque };
 
 #[cfg(feature = "derive")]
 pub use macron_impl_error::Error;
