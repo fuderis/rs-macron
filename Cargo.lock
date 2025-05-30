@@ -20,12 +20,9 @@ dependencies = [
 
 [[package]]
 name = "macron-collections"
-version = "0.1.0"
+version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cbff14313cbb35e86f569606b9bcdb179d0c59d9425052019fe679a660b5be93"
-dependencies = [
- "macron-map",
-]
+checksum = "978ceb1f562abffb58de7eaee7218e7c823969cc5764cc9e5b606c82689d6079"
 
 [[package]]
 name = "macron-impl-display"
