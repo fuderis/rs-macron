@@ -14,6 +14,7 @@ dependencies = [
  "macron-input",
  "macron-inputln",
  "macron-map",
+ "macron-path",
  "macron-regex",
  "macron-str",
 ]
@@ -98,6 +99,17 @@ version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c8fd1e10d314ee9aa76777f1412185fbf51844a438867107f3b617aa2eb03b53"
 dependencies = [
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "macron-path"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2e39698e96be6c14427cbbc115d6f1fa775c6b789f3dfdd9f1ff239906d0fe41"
+dependencies = [
+ "proc-macro2",
  "quote",
  "syn",
 ]
