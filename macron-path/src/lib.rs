@@ -12,37 +12,76 @@ pub fn path(input: TokenStream) -> TokenStream {
         return quote! { ::std::path::PathBuf::new() }.into();
     }
     
-    // string format:
+    // path formatting:
     let Format { expr, args } = syn::parse_macro_input!(input as Format);
     
-    let path_expr = match expr {
-        syn::Expr::Lit(syn::ExprLit { lit: syn::Lit::Str(fmt), .. }) => {
-            if args.is_some() || fmt.value().contains(&['{', '}'][..]) {
-                quote! { ::std::path::PathBuf::from(::std::format!(#fmt #args)) }
-            } else {
-                quote! { ::std::path::PathBuf::from(#fmt) }
+    if let syn::Expr::Lit( syn::ExprLit { lit: syn::Lit::Str(lit_str), .. } ) = expr {
+        let path_str = lit_str.value();
+        let args = if let Some(args) = args { quote!{#args} }else{ quote!{} };
+        
+        // .exe dir path:
+        if path_str.starts_with("/") || path_str.starts_with("\\") {
+            let path_str = &path_str[1..];
+            let lit_str = syn::LitStr::new(path_str, proc_macro2::Span::call_site());
+            
+            quote! {{
+                let exe_dir = ::std::env::current_exe().expect("Failed to get exe path")
+                    .parent()
+                    .map(::std::path::PathBuf::from)
+                    .expect("Failed to get exe dir");
+                exe_dir.join(&::std::format!(#lit_str #args))
+            }}
+        }
+
+        // user data dir path:
+        else if path_str.starts_with("$/") {
+            let path_str = &path_str["$/".len()..];
+            let lit_str = syn::LitStr::new(path_str, proc_macro2::Span::call_site());
+        
+            quote! {{
+                #[cfg(target_os = "windows")]
+                {
+                    let home_dir = ::std::env::var("APPDATA")
+                        .map(::std::path::PathBuf::from)
+                        .expect("Failed to get user data dir");
+                    home_dir.join(&::std::format!(#lit_str #args))
+                }
+
+                #[cfg(target_os = "macos")]
+                {
+                    let home_dir = ::std::env::var("HOME")
+                        .map(::std::path::PathBuf::from)
+                        .expect("Failed to get user data dir");
+                    let lib_dir = home_dir.join("Library").join("Application Support");
+                    lib_dir.join(&::std::format!(#lit_str #args))
+                }
+
+                #[cfg(all(unix, not(target_os = "macos")))]
+                {
+                    let home_dir = ::std::env::var("XDG_DATA_HOME")
+                        .map(::std::path::PathBuf::from)
+                        .or_else(|_| 
+                            ::std::env::var("HOME")
+                                .map(|p| ::std::path::PathBuf::from(p).join(".local/share"))
+                        )
+                        .expect("Failed to get user data dir");
+                    home_dir.join(&::std::format!(#lit_str #args))
+                }
+            }}
+        }
+        
+        // other:
+        else {
+            quote! {
+                ::std::path::PathBuf::from(&::std::format!(#lit_str #args))
             }
         }
-        _ => quote! { ::std::path::PathBuf::from(#expr) }
-    };
-
-    quote! {{
-        let path = #path_expr;
-        if path.to_string_lossy().starts_with("/") || path.to_string_lossy().starts_with("\\") {
-            let exe_path = ::std::env::current_exe().expect("Failed to get exe path");
-            let exe_dir = exe_path.parent().expect("Failed to get exe dir");
-
-            let rel_str = path.to_str().expect("Invalid path");
-            let rel_str = if rel_str.starts_with('/') || rel_str.starts_with('\\') {
-                &rel_str[1..]
-            } else {
-                rel_str
-            };
-            exe_dir.join(rel_str)
-        } else {
-            path
+    } else {
+        quote! {
+            ::std::path::PathBuf::from(#expr)
         }
-    }}.into()
+    }
+    .into()
 }
 
 /// The string formatter

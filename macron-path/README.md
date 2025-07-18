@@ -11,7 +11,7 @@
 A macro for ergonomic and safe construction of file and directory paths in Rust, with context-aware resolution.
 
 * Supports both string literals and formatted paths with arguments.
-* Automatically determines whether to resolve the path relative to the current working directory or the executable's directory.
+* Automatically determines whether to allow a path relative to the current working directory, the executable directory, or the user data directory.
 
 > _P.S. More useful macros are available in the [macron](https://github.com/fuderis/rs-macron.git) package._
 
@@ -34,8 +34,11 @@ let relative_path = path!("foo/bar");
 // Path relative to the executable's directory
 let root_path = path!("/foo/bar");
 
-// Path with string formatting
-let format_path = path!("foo/{}", "bar");
+// Path relative to the user data directory for saving applications data
+let root_path = path!("$/foo/bar");
+
+// Supports string formatting
+let fmt_path = path!("foo/{}", "bar");
 ```
 
 ## Notes:
