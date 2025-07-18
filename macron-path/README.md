@@ -31,11 +31,11 @@ use macron_path::path;
 // Path relative to the current working directory
 let relative_path = path!("foo/bar");
 
-// Path relative to the executable's directory
-let root_path = path!("/foo/bar");
+// Path relative to the application executable's directory
+let app_root_path = path!("/foo/bar");
 
 // Path relative to the user data directory for saving applications data
-let root_path = path!("$/foo/bar");
+let user_data_path = path!("$/foo/bar");
 
 // Supports string formatting
 let fmt_path = path!("foo/{}", "bar");
