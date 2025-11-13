@@ -25,9 +25,7 @@ pub fn impl_error(input: TokenStream) -> TokenStream {
             
                     match src_field {
                         Some(field) if is_option_type(&field.ty) => quote! { self.source.as_deref() },
-
                         Some(_) => quote! { Some(self.source) },
-
                         None => quote! { None }
                     }
                 },
@@ -62,16 +60,14 @@ pub fn impl_error(input: TokenStream) -> TokenStream {
                     
                             match src_field {
                                 Some(field) if is_option_type(&field.ty) => quote! { Self::#var_ident { source, .. } => source.as_deref() },
-
                                 Some(_) => quote! { Self::#var_ident { source, .. } => Some(source) },
-
-                                None => quote! { Self::#var_ident(_) => None }
+                                None => quote! { Self::#var_ident { .. } => None }
                             }
                         },
 
                         // Fields::Unnamed(.., ..)
                         syn::Fields::Unnamed(fields) => {
-                            let src_field = fields.unnamed
+                             let src_field = fields.unnamed
                                 .iter()
                                 .enumerate()
                                 .find(|(_, field)| field.attrs
@@ -83,11 +79,9 @@ pub fn impl_error(input: TokenStream) -> TokenStream {
                             let stubs = (0..src_idx).into_iter().map(|_| quote! { _ });
 
                             match src_field {
-                                Some((_, field)) if is_option_type(&field.ty) => quote! { Self::#var_ident(#(#stubs,)* source) => source.as_deref() },
-
+                                Some((_, field)) if is_option_type(&field.ty) => quote! { Self::#var_ident(#(#stubs,)* source, ..) => source.as_deref() },
                                 Some(_) => quote! { Self::#var_ident(#(#stubs,)* source, ..) => Some(source) },
-
-                                None => quote! { Self::#var_ident(_) => None }
+                                None => quote! { Self::#var_ident(..) => None }
                             }
                         },
 

@@ -1,7 +1,7 @@
 extern crate macron_impl_error;  use macron_impl_error::Error;
 
 #[test]
-fn test_impl_error_struct() {
+fn error_struct() {
     #[derive(Debug, Error)]
     struct Error {
         source: Option<Box<dyn std::error::Error>>
@@ -19,14 +19,16 @@ fn test_impl_error_struct() {
 }
 
 #[test]
-fn test_impl_error_enum() {
+fn error_enum() {
     #[derive(Debug, Error)]
     enum Error {
         WithAnySource { source: Option<Box<dyn std::error::Error>>, msg: String },
 
         WithCertainSource(#[source] SourceError),
+        
+        WithoutSource,
 
-        WithoutSource
+        WithoutSource2(String, String),
     }
 
     impl ::std::fmt::Display for Error {
@@ -35,6 +37,7 @@ fn test_impl_error_enum() {
                 Self::WithAnySource { source, msg } => write!(f, "the error with a message: '{msg}' and a source: '{src}'", src = if let Some(src) = source.as_deref() { src.to_string() }else { "no source".to_owned() }),
                 Self::WithCertainSource(src) => write!(f, "the error with the source: '{src}'"),
                 Self::WithoutSource => write!(f, "the error without a source"),
+                Self::WithoutSource2(_, _) => write!(f, "the error without source"),
             }
         }
     }
