@@ -3,7 +3,7 @@
 extern crate macron_impl_display;  use macron_impl_display::Display;
 
 #[test]
-fn test_impl_display_struct() {
+fn display_struct() {
     // without message
     #[derive(Display)]
     struct Test;
@@ -23,7 +23,7 @@ fn test_impl_display_struct() {
 }
 
 #[test]
-fn test_impl_display_enum() {
+fn display_enum() {
     #[derive(Display)]
     enum Animals {
         Test,
