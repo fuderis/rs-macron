@@ -4,7 +4,7 @@ version = 4
 
 [[package]]
 name = "macron"
-version = "0.1.10"
+version = "0.1.11"
 dependencies = [
  "macron-collections",
  "macron-impl-display",
@@ -105,9 +105,9 @@ dependencies = [
 
 [[package]]
 name = "macron-path"
-version = "0.1.2"
+version = "0.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "20bea4b229c0feb831c4cef7bd2f4a56241ed4602e8cad0fead0fee036da36a9"
+checksum = "40c9df1283060d6cbf9be984f35aac5936eb75a3ca28b1082f19a5c6a49424d6"
 dependencies = [
  "proc-macro2",
  "quote",
