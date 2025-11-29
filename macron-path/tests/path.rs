@@ -1,4 +1,4 @@
-extern crate macron_path;  use macron_path::path;
+use macron_path::path;
 
 #[test]
 fn empty_path() {
@@ -11,13 +11,23 @@ fn path() {
 }
 
 #[test]
-fn root_path() {
-    path!("/foo/bar");
+fn execute_file_path() {
+    path!("$");
+}
+
+#[test]
+fn execute_dir_path() {
+    path!("$/foo/bar");
 }
 
 #[test]
 fn home_path() {
-    path!("$/foo/bar");
+    path!("~/foo/bar");
+}
+
+#[test]
+fn user_data_path() {
+    path!("%/foo/bar");
 }
 
 #[test]
