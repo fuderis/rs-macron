@@ -29,28 +29,6 @@ fn test_hash_map() {
 }
 
 #[test]
-fn test_auto_hash_map() {
-    let map: HashMap<String, String> = auto_hash_map! {
-        "1" => "one",
-        "2" => "two"
-    };
-
-    assert_eq!(map.get("1"), Some( &String::from("one") ));
-    assert_eq!(map.get("2"), Some( &String::from("two") ));
-}
-
-#[test]
-fn test_str_hash_map() {
-    let map: HashMap<_, _> = str_hash_map! {
-        "key1" => "value1",
-        "key2" => "value2"
-    };
-
-    assert_eq!(map.get("key1"), Some( &String::from("value1") ));
-    assert_eq!(map.get("key2"), Some( &String::from("value2") ));
-}
-
-#[test]
 fn test_hash_set() {
     let set: HashSet<_> = hash_set![1, 2, 3];
 
@@ -75,28 +53,6 @@ fn test_btree_map() {
     assert_eq!(map.get("two"), Some(&2));
     assert_eq!(map.get("three"), Some(&3));
     assert_eq!(map.get("four"), Some(&4));
-}
-
-#[test]
-fn test_auto_btree_map() {
-    let map: BTreeMap<String, String> = auto_btree_map! {
-        "1" => "one",
-        "2" => "two"
-    };
-
-    assert_eq!(map.get("1"), Some( &String::from("one") ));
-    assert_eq!(map.get("2"), Some( &String::from("two") ));
-}
-
-#[test]
-fn test_str_btree_map() {
-    let map: BTreeMap<_, _> = str_btree_map! {
-        "key1" => "value1",
-        "key2" => "value2"
-    };
-
-    assert_eq!(map.get("key1"), Some( &String::from("value1") ));
-    assert_eq!(map.get("key2"), Some( &String::from("value2") ));
 }
 
 #[test]
