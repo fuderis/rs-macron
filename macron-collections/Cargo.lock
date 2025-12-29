@@ -4,7 +4,7 @@ version = 4
 
 [[package]]
 name = "macron-collections"
-version = "0.1.3"
+version = "0.1.4"
 dependencies = [
  "macron-map",
 ]
