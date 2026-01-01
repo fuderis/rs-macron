@@ -24,10 +24,9 @@ macron-input = { version = "0.1.0", optional = true }
 macron-inputln = { version = "0.1.1", optional = true }
 
 [features]
+full = ["path", "string", "input", "collections", "derive"]
 path = ["dep:macron-path"]
 string = ["dep:macron-str", "dep:macron-regex"]
 input = ["dep:macron-input", "dep:macron-inputln"]
 collections = ["dep:macron-map", "dep:macron-collections"]
 derive = ["dep:macron-impl-display", "dep:macron-impl-error", "dep:macron-impl-from", "dep:macron-impl-into"]
-
-full = ["path", "string", "input", "collections", "derive"]
